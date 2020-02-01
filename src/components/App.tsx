@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Recipe, IRecipe } from './recipe/Recipe';
+import { Recipe } from './recipe/Recipe';
+import { IRecipe } from '../interfaces';
 
 interface IRecipeApp {
 	recipes: IRecipe[];

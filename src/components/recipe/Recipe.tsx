@@ -1,22 +1,15 @@
 import React from 'react';
 import './Recipe.scss';
-
-export interface IRecipe {
-    id: number;
-    title: string;
-    ingredients: string[];
-    instructions: string;
-    img: string;
-}
+import { IRecipe, IRecipeState } from '../../interfaces';
+import IngredientListComponent from '../ingredients/IngredientList';
+import InstructionsComponent from '../instructions/Instructions';
+import RecipeHeader from '../recipe-header/RecipeHeader';
 
 enum ToggleButtons {
     SHOW = 'Show Recipe',
     HIDE = 'Hide Recipe'
 }
 
-interface IRecipeState {
-    isCollapsed: boolean;
-}
 export class Recipe extends React.Component<IRecipe, IRecipeState> {
     
 	constructor(props: IRecipe) {
@@ -26,37 +19,15 @@ export class Recipe extends React.Component<IRecipe, IRecipeState> {
 
     render(): React.ReactNode {
         const { title, ingredients, instructions, img: imgSource } = this.props;
-        const ingredientsComponent: JSX.Element = this.getIngredientsComponent(ingredients);
         return(
             <article className="recipe-container">
-                <div className="recipe-container__img">
-                    <img src={imgSource} alt={title} className="recipe-img"/>
-                    <h2 className="recipe-header__main">{title}</h2>
-                </div>
+                <RecipeHeader title={title} imgSource={imgSource} />
                 <button onClick={this.toggleRecipe}>{this.getButtonLabel()}</button>
                 <section className="recipe-content" style={this.getRecipeDisplay()}>
-                    {ingredientsComponent}
-                    <section className="recipe-section">
-                        <h4 className="recipe-header__section">Instructions:</h4>
-                        <p>{instructions}</p>
-                    </section>
+                    <IngredientListComponent ingredients={ingredients} />
+                    <InstructionsComponent instructions={instructions} />
                 </section>
             </article>
-        );
-    }
-
-    private getIngredientsComponent(ingredients: string[] = []): JSX.Element {
-        const items: JSX.Element[] = ingredients.map((ingredient, index) => {
-            return (
-                <li key={index}>{ingredient}</li>
-            );
-        });
-
-        return (
-            <section className="recipe-section">
-                <h4 className="recipe-header__section">You will need:</h4>
-                <ul>{items}</ul>
-            </section>
         );
     }
 
@@ -69,6 +40,10 @@ export class Recipe extends React.Component<IRecipe, IRecipeState> {
     }
 
     private toggleRecipe = (): void => {
-        this.setState({ isCollapsed: !this.state.isCollapsed });
+        this.setState(state => {
+            return { 
+                isCollapsed: !state.isCollapsed 
+            };
+        });
     }
 }
