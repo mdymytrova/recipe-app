@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import '../App.scss';
 
 interface IInstructions {
     instructions: string;
@@ -7,8 +6,8 @@ interface IInstructions {
 
 const InstructionsComponent: FunctionComponent<IInstructions> = ({ instructions }): JSX.Element => {
     return (
-        <section className="recipe-section">
-            <h4 className="recipe-header__section">Instructions:</h4>
+        <section>
+            <h4>Instructions:</h4>
             <p>{instructions}</p>
         </section>
     );

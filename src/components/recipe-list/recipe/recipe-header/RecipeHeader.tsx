@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import '../App.scss';
 import './RecipeHeader.scss';
 
 interface IRecipeHeader {

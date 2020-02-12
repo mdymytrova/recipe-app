@@ -1,16 +1,16 @@
 import React from 'react';
 import './Recipe.scss';
-import { IRecipe, IRecipeState } from '../../interfaces';
-import IngredientListComponent from '../ingredients/IngredientList';
-import InstructionsComponent from '../instructions/Instructions';
-import RecipeHeader from '../recipe-header/RecipeHeader';
+import { IRecipe, IRecipeState } from '../../../interfaces';
+import IngredientListComponent from './ingredients/IngredientList';
+import InstructionsComponent from './instructions/Instructions';
+import RecipeHeader from './recipe-header/RecipeHeader';
 
 enum ToggleButtons {
     SHOW = 'Show Recipe',
     HIDE = 'Hide Recipe'
 }
 
-export class Recipe extends React.Component<IRecipe, IRecipeState> {
+class Recipe extends React.Component<IRecipe, IRecipeState> {
     
 	constructor(props: IRecipe) {
 		super(props);
@@ -47,3 +47,5 @@ export class Recipe extends React.Component<IRecipe, IRecipeState> {
         });
     }
 }
+
+export default Recipe;

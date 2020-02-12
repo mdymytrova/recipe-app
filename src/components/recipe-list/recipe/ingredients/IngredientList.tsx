@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import '../App.scss';
 import IngredientComponent from './Ingredient';
 
 interface IIngredientsList {
@@ -8,8 +7,8 @@ interface IIngredientsList {
 
 const IngredientListComponent: FunctionComponent<IIngredientsList> = ({ ingredients }): JSX.Element => {
     return (
-        <section className="recipe-section">
-            <h4 className="recipe-header__section">You will need:</h4>
+        <section>
+            <h4>You will need:</h4>
             <ul>{
                 ingredients.map((ingredient, index) => {
                     return (
