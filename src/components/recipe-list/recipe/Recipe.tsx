@@ -10,25 +10,12 @@ enum ToggleButtons {
     HIDE = 'Hide Recipe'
 }
 
-class Recipe extends React.Component<IRecipe, IRecipeState> {
-    
-	constructor(props: IRecipe) {
+type IRecipeWithHandler = IRecipe & {deleteRecipeHandler: () => void};
+
+class Recipe extends React.Component<IRecipeWithHandler, IRecipeState> {
+	constructor(props: IRecipeWithHandler) {
 		super(props);
         this.state = { isCollapsed: true };
-    }
-
-    render(): React.ReactNode {
-        const { title, ingredients, instructions, img: imgSource } = this.props;
-        return(
-            <article className="recipe-container">
-                <RecipeHeader title={title} imgSource={imgSource} />
-                <button onClick={this.toggleRecipe}>{this.getButtonLabel()}</button>
-                <section className="recipe-content" style={this.getRecipeDisplay()}>
-                    <IngredientListComponent ingredients={ingredients} />
-                    <InstructionsComponent instructions={instructions} />
-                </section>
-            </article>
-        );
     }
 
     private getRecipeDisplay = () => {
@@ -45,6 +32,21 @@ class Recipe extends React.Component<IRecipe, IRecipeState> {
                 isCollapsed: !state.isCollapsed 
             };
         });
+    }
+
+    render(): React.ReactNode {
+        const { title, ingredients, instructions, img: imgSource, deleteRecipeHandler } = this.props;
+        return(
+            <article className="recipe-container">
+                <RecipeHeader title={title} imgSource={imgSource} />
+                <button onClick={this.toggleRecipe}>{this.getButtonLabel()}</button>
+                <section className="recipe-content" style={this.getRecipeDisplay()}>
+                    <IngredientListComponent ingredients={ingredients} />
+                    <InstructionsComponent instructions={instructions} />
+                    <button type="button" onClick={deleteRecipeHandler}>Delete</button>
+                </section>
+            </article>
+        );
     }
 }
 

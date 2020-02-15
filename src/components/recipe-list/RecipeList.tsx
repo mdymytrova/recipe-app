@@ -4,7 +4,8 @@ import { IRecipe } from '../../interfaces';
 import Recipe from './recipe/Recipe';
 
 interface IRecipeList {
-	recipes: IRecipe[];
+    recipes: IRecipe[];
+    deleteRecipeHandler: (id: number) => void;
 }
 
 class RecipeList extends React.Component<IRecipeList, {}> {
@@ -12,12 +13,25 @@ class RecipeList extends React.Component<IRecipeList, {}> {
         super(props);
     }
 
+    private deleteRecipe = (id: number): () => void => {
+        return () => {
+            const { deleteRecipeHandler } = this.props;
+            deleteRecipeHandler(id);
+        }
+    }
+
     render(): React.ReactNode {
 		const { recipes } = this.props;
 		return (
             <div className="recipe-list-container">
                 {recipes.map((recipe: IRecipe) => {
-                    return (<Recipe key={recipe.id} {...recipe}/>);
+                    return (
+                        <Recipe
+                            key={recipe.id}
+                            {...recipe}
+                            deleteRecipeHandler={this.deleteRecipe(recipe.id)}
+                        />
+                    );
                 })}
             </div>
 		);

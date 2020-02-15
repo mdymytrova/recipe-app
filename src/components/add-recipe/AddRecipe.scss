@@ -1,0 +1,85 @@
+$top-padding: 18px;
+
+.add-recipe-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(90, 90, 90, 0.5);
+    z-index: 9999;
+}
+
+.add-recipe-form {
+    position: absolute;
+    z-index: 1;
+    width: 500px;
+    background-color: #fff;
+    padding: $top-padding 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    left: 0; 
+    right: 0; 
+    top: 50px;
+    margin-left: auto; 
+    margin-right: auto; 
+
+    .button-fit-content {
+        width: fit-content;
+
+        &.flex-end {
+            align-self: flex-end;
+        }
+    }
+    
+    .recipe-input {
+        line-height: 1.7;
+    }
+
+    .ingredient-input {
+        width: 100%;
+        margin: 7px 5px;
+    }
+
+    .add-ingredient-button {
+        align-self: baseline;
+    }
+
+    .ingredients-inputs-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .index-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            width: 100%;
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.flex-container-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: baseline;
+}
+
+.row-padding {
+    padding: $top-padding 3px;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
